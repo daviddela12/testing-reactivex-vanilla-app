@@ -1,4 +1,4 @@
-import {from, pipe, map} from 'rxjs';
+import {from, of, pipe, map} from 'rxjs';
 //el operador map es llamado de transformación porque nos permite manipular la respuesta
 
 // Con RxJS al final se tratan los datos como si se devolviera un observable. Al subscribirnos podemos realizar acciones por cada elemento de ese 'from' definido
