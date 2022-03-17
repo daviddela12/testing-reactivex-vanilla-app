@@ -2,7 +2,8 @@ import {from, of, pipe, map, interval, mergeMap, timer, take} from 'rxjs';
 const strm1 = interval(1000);
 const strm2 = of("El stream emite -> ");
 
-//MergeMap es un operador nos permite unificar en un solo Observable dos flujos de datos, haciendo que de dos entradas obtengamos una salida “mergeada”.
+// MergeMap es un operador nos permite unificar en un solo Observable dos flujos de datos, haciendo que de dos entradas obtengamos una salida “mergeada”.
+// permite el trabajo concurrente controlado y además de ello, fusionar los datos en una misma salida.
 
 // al final es como si dijeras Cuando se emita el strm1 que se emita también el strm2
     strm1
