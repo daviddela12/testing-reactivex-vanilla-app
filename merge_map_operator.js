@@ -1,4 +1,4 @@
-import {from, of, pipe, map, interval, mergeMap, timer} from 'rxjs';
+import {from, of, pipe, map, interval, mergeMap, timer, take} from 'rxjs';
 const strm1 = interval(1000);
 const strm2 = of("El stream emite -> ");
 
@@ -28,3 +28,20 @@ const strm2 = of("El stream emite -> ");
             5
           )
         ).subscribe(r => console.log(r));
+
+
+        /**
+         * Vamos a modificar este ejemplo para hacerlo algo mas visual. Mientras un hilo está activo, 
+         * este irá informando por consola hasta que termina y para que pueda ser mas trazable, 
+         * vamos a permitir una concurrencia de solo dos hilos.
+         */
+    const obs3 = interval(1000);
+    const obs4 = timer(5000);
+  //cada 5 segundos aparecen 2 hilos
+      obs3
+      .pipe(
+        mergeMap(
+          (vMap1) => obs4.pipe(map(w=>"Hilo Extra trabajando -> " + vMap1), take(5)), //cada 5 segundos
+          2 //2 hilos a la vez únicamente
+        )
+      ).subscribe(r => console.log(r));
